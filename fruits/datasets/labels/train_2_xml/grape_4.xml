@@ -1,0 +1,26 @@
+<annotation>
+	<folder>grapes</folder>
+	<filename>grape_e4.jpg</filename>
+	<path>E:\AI_big_homework\my_image\grapes\grape_e4.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>193</width>
+		<height>253</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>grape</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>4</xmin>
+			<ymin>38</ymin>
+			<xmax>172</xmax>
+			<ymax>245</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>apple_42.jpg</filename>
+	<path>E:\AI_big_homework\yolov\yolov5-master\fruits\datasets\images\train\apple_42.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>500</width>
+		<height>500</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>apple</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>43</xmin>
+			<ymin>56</ymin>
+			<xmax>445</xmax>
+			<ymax>467</ymax>
+		</bndbox>
+	</object>
+</annotation>

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>orange_22.jpg</filename>
+	<path>E:\AI_big_homework\yolov\yolov5-master\fruits\datasets\images\train\orange_22.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>900</width>
+		<height>508</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>orange</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>75</xmin>
+			<ymin>105</ymin>
+			<xmax>520</xmax>
+			<ymax>452</ymax>
+		</bndbox>
+	</object>
+</annotation>

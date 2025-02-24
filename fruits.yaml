@@ -1,0 +1,9 @@
+
+
+train: E:\AI_big_homework\yolov\yolov8\fruits\datasets\images\train_2\
+val: E:\AI_big_homework\yolov\yolov8\fruits\datasets\images\test\
+test: E:\AI_big_homework\yolov\yolov8\fruits\datasets\images\test\
+
+nc: 5
+
+names: [apple, banana, orange, grape, mixed]

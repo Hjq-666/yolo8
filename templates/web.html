@@ -1,0 +1,288 @@
+<!--<!doctype html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="utf-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+<!--    <title>水果检测</title>-->
+<!--    <style>-->
+<!--      body {-->
+<!--        font-family: Arial, sans-serif;-->
+<!--        background: linear-gradient(to bottom right, #fff9c4, #e3f2fd);-->
+<!--        color: #0277bd;-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--        height: 100vh;-->
+<!--        margin: 0;-->
+<!--      }-->
+<!--      .container {-->
+<!--        text-align: center;-->
+<!--        background: rgba(255, 255, 255, 0.9);-->
+<!--        padding: 20px;-->
+<!--        border-radius: 8px;-->
+<!--        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--        width: 80%;-->
+<!--        max-width: 800px;-->
+<!--      }-->
+<!--      h1 {-->
+<!--        margin-bottom: 20px;-->
+<!--        color: #01579b;-->
+<!--        font-size: 3em;-->
+<!--      }-->
+<!--      form {-->
+<!--        margin-bottom: 20px;-->
+<!--      }-->
+<!--      input[type="file"] {-->
+<!--        padding: 10px;-->
+<!--        border-radius: 5px;-->
+<!--        border: 1px solid #0277bd;-->
+<!--        background-color: #bbdefb;-->
+<!--        color: #0277bd;-->
+<!--      }-->
+<!--      input[type="submit"] {-->
+<!--        padding: 10px 20px;-->
+<!--        border: none;-->
+<!--        border-radius: 5px;-->
+<!--        background-color: #0277bd;-->
+<!--        color: white;-->
+<!--        cursor: pointer;-->
+<!--        margin-top: 10px;-->
+<!--      }-->
+<!--      input[type="submit"]:hover {-->
+<!--        background-color: #01579b;-->
+<!--      }-->
+<!--      .result {-->
+<!--        margin-top: 20px;-->
+<!--        display: flex;-->
+<!--        justify-content: space-around;-->
+<!--        align-items: center;-->
+<!--        flex-wrap: wrap;-->
+<!--      }-->
+<!--      .result div {-->
+<!--        flex: 1;-->
+<!--        padding: 10px;-->
+<!--        min-width: 250px;-->
+<!--      }-->
+<!--      .result img {-->
+<!--        max-width: 100%;-->
+<!--        height: auto;-->
+<!--        border-radius: 8px;-->
+<!--        margin-top: 10px;-->
+<!--        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);-->
+<!--      }-->
+<!--      footer {-->
+<!--        margin-top: 20px;-->
+<!--        color: #757575;-->
+<!--      }-->
+<!--    </style>-->
+<!--  </head>-->
+<!--  <body>-->
+<!--    <div class="container">-->
+<!--      <h1>水果检测</h1>-->
+<!--      <form method="post" enctype="multipart/form-data">-->
+<!--        <input type="file" name="file" required>-->
+<!--        <input type="submit" value="检测">-->
+<!--      </form>-->
+<!--      {% if uploaded_image %}-->
+<!--        <div class="result">-->
+<!--          <div>-->
+<!--            <h2>用户图片</h2>-->
+<!--            <img src="{{ url_for('uploaded_file', filename=uploaded_image) }}" alt="用户图片">-->
+<!--          </div>-->
+<!--          <div>-->
+<!--            <h2>检测结果</h2>-->
+<!--            <img src="{{ url_for('uploaded_file', filename=flipped_image) }}" alt="检测结果">-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      {% endif %}-->
+<!--      <footer>© 2024 Fruit Classifier</footer>-->
+<!--    </div>-->
+<!--  </body>-->
+<!--</html>-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>水果检测</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Orbitron', sans-serif;
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+      }
+      .container {
+        text-align: center;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+        width: 100%;
+        max-width: 900px;
+        animation: fadeIn 1.5s ease-in-out;
+      }
+      h1 {
+        margin-bottom: 20px;
+        color: #00e5ff;
+        font-size: 3em;
+      }
+      p {
+        font-size: 1.2em;
+        margin-bottom: 30px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+      .file-input-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 2px solid #00e5ff;
+        border-radius: 5px;
+        background-color: transparent;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        font-size: 1.2em;
+        color: #00e5ff;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 300px;
+        position: relative;
+      }
+      .file-input-wrapper:hover {
+        border-color: #00ffcc;
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+      }
+      .file-input-wrapper input[type="file"] {
+        display: none;
+      }
+      .file-input-wrapper::before {
+        content: '选择文件';
+        margin-left: 10px;
+        pointer-events: none;
+      }
+      .file-input-wrapper::after {
+        content: '⇧';
+        position: absolute;
+        right: 20px;
+        font-size: 1.5em;
+        pointer-events: none;
+      }
+      #preview {
+        display: none;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        transition: transform 0.3s;
+      }
+      input[type="submit"] {
+        padding: 15px 30px;
+        border: none;
+        border-radius: 5px;
+        background-color: #00e5ff;
+        color: #000;
+        cursor: pointer;
+        transition: background-color 0.3s, box-shadow 0.3s;
+        font-size: 1.2em;
+      }
+      input[type="submit"]:hover {
+        background-color: #00ffcc;
+        box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+      }
+      .result {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        justify-items: center;
+      }
+      .result div {
+        text-align: center;
+        padding: 10px;
+      }
+      .result img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-top: 10px;
+        box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        transition: transform 0.3s;
+      }
+      .result img:hover {
+        transform: scale(1.05);
+      }
+      footer {
+        margin-top: 30px;
+        color: #00e5ff;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>水果分类检测</h1>
+      <p>请上传一张水果图片进行检测噢：</p>
+      <form method="post" enctype="multipart/form-data">
+        <label class="file-input-wrapper">
+          <input type="file" name="file" id="fileInput" required>
+        </label>
+        <img id="preview" alt="预览图片">
+        <input type="submit" value="检测">
+      </form>
+      {% if uploaded_image %}
+        <div class="result">
+          <div>
+            <h2>上传图片</h2>
+            <h2>The picture you uploaded</h2>
+            <img src="{{ url_for('uploaded_file', filename=uploaded_image) }}" alt="用户图片">
+          </div>
+          <div>
+            <h2>检测结果</h2>
+            <h2>Bingo!!! Perfect~~~</h2>
+            <img src="{{ url_for('uploaded_file', filename=flipped_image) }}" alt="检测结果">
+          </div>
+        </div>
+      {% endif %}
+      <footer>Sorry Group members: PHQL</footer>
+    </div>
+    <script>
+      document.getElementById('fileInput').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const preview = document.getElementById('preview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+    </script>
+  </body>
+</html>
